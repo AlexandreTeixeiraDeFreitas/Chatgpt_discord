@@ -13,7 +13,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "pm2 start index.j",
+    "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "engines": {
