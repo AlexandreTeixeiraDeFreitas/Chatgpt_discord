@@ -3,6 +3,13 @@ import express from "express";
 import * as dotenv from "dotenv";
 dotenv.config();
 import { Configuration, OpenAIApi } from "openai";
+
+// const { Client, GatewayIntentBits } = require("discord.js");
+// const express = require("express");
+// const dotenv = require("dotenv");
+// dotenv.config();
+// const { Configuration, OpenAIApi } = require("openai");
+
 const app = express();
 app.use(express.json());
 app.get("/", async (req, res) => {
