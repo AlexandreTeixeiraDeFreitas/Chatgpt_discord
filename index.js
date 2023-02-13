@@ -1,9 +1,11 @@
 import { Client, GatewayIntentBits } from "discord.js";
+import express from 'express'
 import * as dotenv from 'dotenv'
 dotenv.config();
-// import dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
+const app = express();
 
+app.use(express.json());
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -52,3 +54,14 @@ client.on("messageCreate", async (message) => {
   });
 
 client.login(process.env.TOKEN_BOT);
+
+app.get("/", async (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "bienvenue sur le chatbox",
+  });
+});
+
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server listening on port ${port}`));
