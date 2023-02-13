@@ -41,13 +41,17 @@ client.on("messageCreate", async message => {
           model: "text-davinci-003",
           prompt: `${message.content}`,
           temperature: 1,
-          max_tokens: 2000,
+          max_tokens: 1000,
           top_p: 1,
           frequency_penalty: 0,
           presence_penalty: 0.1
         });
         console.log(response.data.choices[0].text);
-        msg.edit({ content: `${response.data.choices[0].text}` });
+        if (response.data.choices[0].text.length > 2000) {
+          msg.edit({ content: `${response.data.choices[0].text.substring(0, 1997)}...` });
+        } else {
+          msg.edit({ content: `${response.data.choices[0].text}` });
+        }
       } catch (error) {
         console.error(error);
         msg.edit({ content: "Une erreur s'est produite lors de la réponse du bot." });
